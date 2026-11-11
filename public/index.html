@@ -15,6 +15,7 @@
       <a href="#funciona">Cómo funciona</a>
       <a href="#personas">Para quién</a>
       <a href="#planes">Planes</a>
+      <a href="#contacto">Contáctanos</a>
     </nav>
   </header>
   <main>
@@ -70,7 +71,7 @@
   <section class="demo" id="demo">
     <div>
       <h2>Pruébalo ahora</h2>
-      <p>Elige una hoja de ejemplo para ver cómo se presentaría el resultado en la app.</p>
+      <p>Elige un cultivo de ejemplo para ver cómo se presentaría el resultado en la app.</p>
       <label for="cultivo">Cultivo</label>
       <select id="cultivo">
         <option value="papa">Papa</option>
@@ -79,19 +80,23 @@
       <button id="analizar">Analizar ejemplo</button>
       <p id="resultado" role="status">Simulación con resultados de ejemplo.</p>
     </div>
-    <img id="muestra" src="assets/images/papa.png" alt="Hoja de papa ilustrada">
+    <img id="muestra" src="assets/images/papa-cultivo.svg" alt="Planta de papa con hojas compuestas y tubérculos bajo tierra">
   </section>
   <section id="planes">
     <h2>Planes</h2>
+    <p>Precios de ejemplo en soles para el proyecto académico.</p>
     <div class="cards">
       <article id="descarga">
-        <h3>Agricultor · Gratis</h3>
+        <h3>Agricultor</h3>
+        <p class="precio"><strong>S/ 0</strong> al mes</p>
         <p>Diagnóstico, voz e historial de parcelas. La descarga estará disponible cuando se publique la app.</p>
         <a href="#funciona">Ver cómo funciona</a>
       </article>
       <article>
-        <h3>Plan Cooperativa</h3>
+        <h3>Cooperativa</h3>
+        <p class="precio"><strong>S/ 5</strong> por socio al mes</p>
         <p>Panel de casos, mapa de calor, alertas y reportes para los socios.</p>
+        <a href="#contacto">Consultar por el plan</a>
       </article>
     </div>
   </section>
@@ -109,6 +114,29 @@
       <summary>¿Reemplaza al ingeniero agrónomo?</summary>
       <p>AgroScan sirve de apoyo. Un técnico puede revisar los casos dudosos.</p>
     </details>
+  </section>
+  <section id="contacto">
+    <h2>Contáctanos</h2>
+    <p>¿Tienes una consulta sobre AgroScan? Prueba el formulario con datos ficticios. El envío se simula en esta página.</p>
+    <form id="consulta">
+      <label>Nombre
+        <input name="nombre" required maxlength="80">
+      </label>
+      <label>Organización (opcional)
+        <input name="organizacion" maxlength="100">
+      </label>
+      <label>Celular (opcional)
+        <input type="tel" name="celular" placeholder="987654321" pattern="[0-9]{9}" title="Ingresa nueve dígitos">
+      </label>
+      <label>Número de socios (opcional)
+        <input type="number" name="socios" min="1" step="1">
+      </label>
+      <label class="mensaje">Mensaje
+        <textarea name="mensaje" rows="4" required maxlength="1000"></textarea>
+      </label>
+      <button type="submit">Enviar consulta de prueba</button>
+      <p id="confirmacion" role="status"></p>
+    </form>
   </section>
 </main>
 <footer>
