@@ -1,22 +1,216 @@
-* {box-sizing:border-box}
-body {margin:0;background:#faf8ef;color:#213d2d;font:17px/1.55 'Segoe UI',Arial,sans-serif}
-header,main,footer {max-width:1180px;margin:auto;padding:0 5%}
-header {min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid #c9cec0}
-.brand {font-size:29px;font-weight:800;letter-spacing:-1px}
-a {color:inherit} header a,.button {text-decoration:none}
-nav,.actions {display:flex;align-items:center;gap:24px}
-.button,button {display:inline-block;border:0;border-radius:9px;padding:13px 22px;font:inherit;font-weight:650;cursor:pointer}
-.green,button {background:#215638;color:white}.yellow {background:#f6c849;color:#26391e}
-.hero,.demo {display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:6%}
-section {padding:52px 0;border-bottom:1px solid #c9cec0}
-h1,h2,h3 {line-height:1.1;margin:0 0 16px}h1 {font-size:clamp(40px,5vw,68px);letter-spacing:-.055em}h1 em {color:#467643;font-style:normal}
-h2 {font-size:clamp(29px,3vw,42px);letter-spacing:-.045em}
-p {max-width:62ch}.hero p {font-size:19px}.actions {margin-top:26px}
-figure {position:relative;margin:0;border-radius:22px;overflow:hidden;background:#245337}figure img,.demo img {width:100%;display:block}
-figcaption {position:absolute;bottom:15px;left:16px;color:#fff;background:#163f30;padding:5px 12px;border-radius:6px}
-.cards {display:flex;gap:18px}.cards article {flex:1;background:#f0f1e4;padding:24px;border-radius:12px}.cards p {margin-bottom:0}
-.demo img {max-width:330px;justify-self:center;border-radius:16px}
-select {min-height:48px;margin:0 8px;padding:5px;font:inherit}
-details {border-bottom:1px solid #ccd1bd;padding:14px 0}summary {cursor:pointer;font-weight:650}footer {padding-top:30px;padding-bottom:35px}
-:focus-visible {outline:3px solid #996800;outline-offset:3px}
-@media(max-width:720px){header{padding-block:12px;flex-wrap:wrap}nav{order:3;width:100%;justify-content:space-between;gap:8px;font-size:15px}.hero,.demo{grid-template-columns:1fr;gap:24px}.cards{flex-direction:column}.actions{flex-wrap:wrap;gap:15px}section{padding:32px 0}.hero figure{max-width:430px}.demo img{max-width:240px}}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #faf8ef;
+    color: #213d2d;
+    font: 17px/1.55 'Segoe UI',Arial,sans-serif;
+}
+
+header,main,footer {
+    max-width: 1180px;
+    margin: auto;
+    padding: 0 5%;
+}
+
+.header {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-bottom: 1px solid #c9cec0;
+}
+
+.brand {
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+a {
+    color: inherit;
+}
+
+header a,.button {
+    text-decoration: none;
+}
+
+.nav,.actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.button,button {
+    display: inline-block;
+    border: 0;
+    border-radius: 9px;
+    padding: 13px 22px;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.green,button {
+    background: #215638;
+    color: white;
+}
+
+.yellow {
+    background: #f6c849;
+    color: #26391e;
+}
+
+.hero,.demo {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+    gap: 6%;
+}
+
+section {
+    padding: 52px 0;
+    border-bottom: 1px solid #c9cec0;
+}
+
+h1,h2,h3 {
+    line-height: 1.1;
+    margin: 0 0 16px;
+}
+
+h1 {
+    font-size: clamp(40px,5vw,68px);
+    letter-spacing: -.055em;
+}
+
+h1 em {
+    color: #467643;
+    font-style: normal;
+}
+
+h2 {
+    font-size: clamp(29px,3vw,42px);
+    letter-spacing: -.045em;
+}
+
+p {
+    max-width: 62ch;
+}
+
+.hero p {
+    font-size: 19px;
+}
+
+.actions {
+    margin-top: 26px;
+}
+
+figure {
+    position: relative;
+    margin: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #245337;
+}
+
+figure img,.demo img {
+    width: 100%;
+    display: block;
+}
+
+figcaption {
+    position: absolute;
+    bottom: 15px;
+    left: 16px;
+    color: #fff;
+    background: #163f30;
+    padding: 5px 12px;
+    border-radius: 6px;
+}
+
+.cards {
+    display: flex;
+    gap: 18px;
+}
+
+.cards article {
+    flex: 1;
+    background: #f0f1e4;
+    padding: 24px;
+    border-radius: 12px;
+}
+
+.cards p {
+    margin-bottom: 0;
+}
+
+.demo img {
+    max-width: 330px;
+    justify-self: center;
+    border-radius: 16px;
+}
+
+select {
+    min-height: 48px;
+    margin: 0 8px;
+    padding: 5px;
+    font: inherit;
+}
+
+details {
+    border-bottom: 1px solid #ccd1bd;
+    padding: 14px 0;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 650;
+}
+
+footer {
+    padding-top: 30px;
+    padding-bottom: 35px;
+}
+
+:focus-visible {
+    outline: 3px solid #996800;
+    outline-offset: 3px;
+}
+
+@media(max-width:720px) {
+    header {
+        padding-block: 12px;
+        flex-wrap: wrap;
+    }
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        font-size: 15px;
+    }
+    .hero,.demo {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .cards {
+        flex-direction: column;
+    }
+    .actions {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    section {
+        padding: 32px 0;
+    }
+    .hero figure {
+        max-width: 430px;
+    }
+    .demo img {
+        max-width: 240px;
+    }
+}
+
