@@ -214,3 +214,60 @@ footer {
     }
 }
 
+
+.precio strong {
+    font-size: 2rem;
+    color: #215638;
+}
+
+#planes article a {
+    display: inline-block;
+    margin-top: 16px;
+}
+
+#consulta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 720px;
+}
+
+#consulta label {
+    display: grid;
+    gap: 5px;
+}
+
+#consulta input, #consulta textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #788879;
+    border-radius: 6px;
+    background: white;
+    font: inherit;
+}
+
+#consulta textarea {
+    resize: vertical;
+}
+
+.mensaje, #confirmacion {
+    grid-column: 1 / -1;
+}
+
+#consulta button {
+    justify-self: start;
+}
+
+#confirmacion {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    #consulta {
+        grid-template-columns: 1fr;
+    }
+    .nav {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+    }
+}
