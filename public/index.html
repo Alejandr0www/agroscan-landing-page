@@ -1,114 +1,120 @@
-&lt;!doctype html&gt;
-&lt;html lang=&quot;es&quot;&gt;
-&lt;head&gt;
-  &lt;meta charset=&quot;utf-8&quot;&gt;
-  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-  &lt;title&gt;AgroScan | Diagnóstico en el campo&lt;/title&gt;
-  &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;assets/styles/styles.css&quot;&gt;
-  &lt;script defer src=&quot;assets/scripts/main.js&quot;&gt;&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;nav aria-label=&quot;Principal&quot;&gt;
-    &lt;a class=&quot;brand&quot; href=&quot;#inicio&quot;&gt;◒ AgroScan&lt;/a&gt;
-    &lt;a href=&quot;#funciona&quot;&gt;Cómo funciona&lt;/a&gt;
-    &lt;a href=&quot;#planes&quot;&gt;Planes&lt;/a&gt;
-  &lt;/nav&gt;
-  &lt;div id=&quot;inicio&quot; class=&quot;hero&quot;&gt;
-    &lt;h1&gt;Detecta plagas en tu chacra, &lt;em&gt;aunque no tengas señal.&lt;/em&gt;&lt;/h1&gt;
-    &lt;p&gt;AgroScan analiza la hoja de tu papa o maíz en tu celular y te explica el resultado en voz alta, en español o quechua.&lt;/p&gt;
-    &lt;div class=&quot;actions&quot;&gt;
-      &lt;a class=&quot;button yellow&quot; href=&quot;#demo&quot;&gt;Analizar una hoja de ejemplo&lt;/a&gt;
-      &lt;a class=&quot;link&quot; href=&quot;#demo&quot;&gt;Probar la demo →&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;figure&gt;
-      &lt;img src=&quot;assets/images/papa.png&quot; alt=&quot;Ilustración de una hoja de papa dentro de la guía de escaneo&quot;&gt;
-      &lt;figcaption&gt;Escaneo de hoja · Papa&lt;/figcaption&gt;
-    &lt;/figure&gt;
-  &lt;/div&gt;
-  &lt;section id=&quot;funciona&quot;&gt;
-    &lt;h2&gt;De la hoja al diagnóstico&lt;/h2&gt;
-    &lt;p&gt;En una chacra sin señal, reconocer una plaga a tiempo puede evitar un viaje y un tratamiento equivocado.&lt;/p&gt;
-    &lt;div class=&quot;cards&quot;&gt;
-      &lt;article&gt;
-        &lt;h3&gt;1. Escanea&lt;/h3&gt;
-        &lt;p&gt;Toma una foto de la hoja con la guía en pantalla.&lt;/p&gt;
-      &lt;/article&gt;
-      &lt;article&gt;
-        &lt;h3&gt;2. Escucha&lt;/h3&gt;
-        &lt;p&gt;Recibe una explicación en español o quechua, incluso sin internet.&lt;/p&gt;
-      &lt;/article&gt;
-      &lt;article&gt;
-        &lt;h3&gt;3. Actúa&lt;/h3&gt;
-        &lt;p&gt;Revisa los pasos sugeridos y consulta a tu técnico si tienes dudas.&lt;/p&gt;
-      &lt;/article&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-  &lt;section id=&quot;personas&quot;&gt;
-    &lt;h2&gt;Para quienes cuidan el cultivo&lt;/h2&gt;
-    &lt;div class=&quot;cards&quot;&gt;
-      &lt;article&gt;
-        &lt;h3&gt;Agricultores&lt;/h3&gt;
-        &lt;p&gt;Consulta desde la parcela. El modo Sol mejora el contraste y el modo guantes amplía los botones.&lt;/p&gt;
-      &lt;/article&gt;
-      &lt;article&gt;
-        &lt;h3&gt;Técnicos&lt;/h3&gt;
-        &lt;p&gt;Registra una inspección con fotos y ubicación. Evita pasar los mismos datos de la libreta a Excel.&lt;/p&gt;
-      &lt;/article&gt;
-      &lt;article&gt;
-        &lt;h3&gt;Cooperativas&lt;/h3&gt;
-        &lt;p&gt;Consulta el mapa de casos y avisa a tus socios cuando aparezca un posible brote.&lt;/p&gt;
-      &lt;/article&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-  &lt;section class=&quot;demo&quot; id=&quot;demo&quot;&gt;
-    &lt;div&gt;
-      &lt;h2&gt;Pruébalo ahora&lt;/h2&gt;
-      &lt;p&gt;Elige una hoja de ejemplo para ver cómo se presentaría el resultado en la app.&lt;/p&gt;
-      &lt;label for=&quot;cultivo&quot;&gt;Cultivo&lt;/label&gt;
-      &lt;select id=&quot;cultivo&quot;&gt;
-        &lt;option value=&quot;papa&quot;&gt;Papa&lt;/option&gt;
-        &lt;option value=&quot;maiz&quot;&gt;Maíz&lt;/option&gt;
-      &lt;/select&gt;
-      &lt;button id=&quot;analizar&quot;&gt;Analizar ejemplo&lt;/button&gt;
-      &lt;p id=&quot;resultado&quot; role=&quot;status&quot;&gt;Simulación con resultados de ejemplo.&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;img id=&quot;muestra&quot; src=&quot;assets/images/papa.png&quot; alt=&quot;Hoja de papa ilustrada&quot;&gt;
-  &lt;/section&gt;
-  &lt;section id=&quot;planes&quot;&gt;
-    &lt;h2&gt;Planes&lt;/h2&gt;
-    &lt;div class=&quot;cards&quot;&gt;
-      &lt;article id=&quot;descarga&quot;&gt;
-        &lt;h3&gt;Agricultor · Gratis&lt;/h3&gt;
-        &lt;p&gt;Diagnóstico, voz e historial de parcelas. La descarga estará disponible cuando se publique la app.&lt;/p&gt;
-        &lt;a href=&quot;#funciona&quot;&gt;Ver cómo funciona&lt;/a&gt;
-      &lt;/article&gt;
-      &lt;article&gt;
-        &lt;h3&gt;Plan Cooperativa&lt;/h3&gt;
-        &lt;p&gt;Panel de casos, mapa de calor, alertas y reportes para los socios.&lt;/p&gt;
-      &lt;/article&gt;
-    &lt;/div&gt;
-  &lt;/section&gt;
-  &lt;section&gt;
-    &lt;h2&gt;Preguntas frecuentes&lt;/h2&gt;
-    &lt;details&gt;
-      &lt;summary&gt;¿Funciona sin internet?&lt;/summary&gt;
-      &lt;p&gt;La app está diseñada para analizar hojas en el celular y sincronizar los registros cuando vuelva la señal.&lt;/p&gt;
-    &lt;/details&gt;
-    &lt;details&gt;
-      &lt;summary&gt;¿Qué cultivos reconoce?&lt;/summary&gt;
-      &lt;p&gt;La primera versión está pensada para papa y maíz.&lt;/p&gt;
-    &lt;/details&gt;
-    &lt;details&gt;
-      &lt;summary&gt;¿Reemplaza al ingeniero agrónomo?&lt;/summary&gt;
-      &lt;p&gt;AgroScan sirve de apoyo. Un técnico puede revisar los casos dudosos.&lt;/p&gt;
-    &lt;/details&gt;
-  &lt;/section&gt;
-&lt;/main&gt;
-&lt;footer&gt;
-  &lt;a href=&quot;#inicio&quot;&gt;Volver al inicio&lt;/a&gt;
-  &lt;br&gt;
-  &lt;b&gt;AgroScan&lt;/b&gt; · IHC y Tecnologías Móviles · UPC 2026
-&lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AgroScan | Diagnóstico en el campo</title>
+  <link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="assets/styles/styles.css">
+  <script defer src="assets/scripts/main.js"></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#inicio">◒ AgroScan</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#funciona">Cómo funciona</a>
+      <a href="#personas">Para quién</a>
+      <a href="#planes">Planes</a>
+    </nav>
+  </header>
+  <main>
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+    <h1>Detecta plagas en tu chacra, <em>aunque no tengas señal.</em></h1>
+    <p>AgroScan analiza la hoja de tu papa o maíz en tu celular y te explica el resultado en voz alta, en español o quechua.</p>
+    <div class="actions">
+      <a class="button yellow" href="#demo">Analizar una hoja de ejemplo</a>
+      <a class="link" href="#funciona">Ver cómo funciona</a>
+    </div>
+    </div>
+    <figure>
+      <img src="assets/images/papa.png" alt="Ilustración de una hoja de papa dentro de la guía de escaneo">
+      <figcaption>Escaneo de hoja · Papa</figcaption>
+    </figure>
+  </section>
+  <section id="funciona">
+    <h2>De la hoja al diagnóstico</h2>
+    <p>En una chacra sin señal, reconocer una plaga a tiempo puede evitar un viaje y un tratamiento equivocado.</p>
+    <div class="cards">
+      <article>
+        <h3>1. Escanea</h3>
+        <p>Toma una foto de la hoja con la guía en pantalla.</p>
+      </article>
+      <article>
+        <h3>2. Escucha</h3>
+        <p>Recibe una explicación en español o quechua, incluso sin internet.</p>
+      </article>
+      <article>
+        <h3>3. Actúa</h3>
+        <p>Revisa los pasos sugeridos y consulta a tu técnico si tienes dudas.</p>
+      </article>
+    </div>
+  </section>
+  <section id="personas">
+    <h2>Para quienes cuidan el cultivo</h2>
+    <div class="cards">
+      <article>
+        <h3>Agricultores</h3>
+        <p>Consulta desde la parcela. El modo Sol mejora el contraste y el modo guantes amplía los botones.</p>
+      </article>
+      <article>
+        <h3>Técnicos</h3>
+        <p>Registra una inspección con fotos y ubicación. Evita pasar los mismos datos de la libreta a Excel.</p>
+      </article>
+      <article>
+        <h3>Cooperativas</h3>
+        <p>Consulta el mapa de casos y avisa a tus socios cuando aparezca un posible brote.</p>
+      </article>
+    </div>
+  </section>
+  <section class="demo" id="demo">
+    <div>
+      <h2>Pruébalo ahora</h2>
+      <p>Elige una hoja de ejemplo para ver cómo se presentaría el resultado en la app.</p>
+      <label for="cultivo">Cultivo</label>
+      <select id="cultivo">
+        <option value="papa">Papa</option>
+        <option value="maiz">Maíz</option>
+      </select>
+      <button id="analizar">Analizar ejemplo</button>
+      <p id="resultado" role="status">Simulación con resultados de ejemplo.</p>
+    </div>
+    <img id="muestra" src="assets/images/papa.png" alt="Hoja de papa ilustrada">
+  </section>
+  <section id="planes">
+    <h2>Planes</h2>
+    <div class="cards">
+      <article id="descarga">
+        <h3>Agricultor · Gratis</h3>
+        <p>Diagnóstico, voz e historial de parcelas. La descarga estará disponible cuando se publique la app.</p>
+        <a href="#funciona">Ver cómo funciona</a>
+      </article>
+      <article>
+        <h3>Plan Cooperativa</h3>
+        <p>Panel de casos, mapa de calor, alertas y reportes para los socios.</p>
+      </article>
+    </div>
+  </section>
+  <section>
+    <h2>Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Funciona sin internet?</summary>
+      <p>La app está diseñada para analizar hojas en el celular y sincronizar los registros cuando vuelva la señal.</p>
+    </details>
+    <details>
+      <summary>¿Qué cultivos reconoce?</summary>
+      <p>La primera versión está pensada para papa y maíz.</p>
+    </details>
+    <details>
+      <summary>¿Reemplaza al ingeniero agrónomo?</summary>
+      <p>AgroScan sirve de apoyo. Un técnico puede revisar los casos dudosos.</p>
+    </details>
+  </section>
+</main>
+<footer>
+  <a href="#inicio">Volver al inicio</a>
+  <br>
+  <b>AgroScan</b> · IHC y Tecnologías Móviles · UPC 2026
+</footer>
+</body>
+</html>
