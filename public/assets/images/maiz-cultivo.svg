@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360">
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#40725a" stroke-width=".7"/></pattern>
+  </defs>
+  <rect width="400" height="360" fill="#214e3c"/>
+  <rect width="400" height="360" fill="url(#grid)"/>
+  <path d="M32 54V32h24 M344 32h24v22 M368 306v22h-24 M56 328H32v-22" fill="none" stroke="#e6d390" stroke-width="3"/>
+  <path d="M202 302Q206 198 195 81" fill="none" stroke="#96b866" stroke-width="10"/>
+  <g fill="#78a25b"><path d="M201 173Q149 82 82 93Q140 102 200 186Z"/><path d="M202 144Q246 65 304 66Q254 90 202 159Z"/><path d="M204 238Q154 171 71 177Q139 184 203 252Z"/><path d="M203 264Q248 199 330 185Q256 223 203 277Z"/></g>
+  <g fill="none" stroke="#d2b87d" stroke-width="3"><path d="M195 98l-5-54m5 49l-22-37m23 35l13-40m-16 26l-12-31"/></g>
+  <g transform="rotate(19 224 185)"><ellipse cx="224" cy="184" rx="19" ry="47" fill="#edbe4e"/><path d="M215 148v70m8-79v87m8-80v72m-23-56h32m-35 10h37m-37 11h37m-37 11h37m-35 11h32" fill="none" stroke="#c69136" stroke-width="2"/><path d="M224 236Q188 213 193 168Q217 191 224 221Q231 192 251 173Q251 210 224 236" fill="#80ab62"/></g>
+</svg>
