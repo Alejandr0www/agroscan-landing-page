@@ -19,3 +19,4 @@ La aplicación propuesta contempla diagnóstico offline, resultados por voz en e
 
 ## Trabajo en equipo
 main conserva el avance integrado. develop reúne las funcionalidades. Para iniciar otra tarea usa `git switch develop` y `git switch -c feature/nombre-de-la-tarea`. Integra la rama mediante un pull request hacia develop.
+xd
