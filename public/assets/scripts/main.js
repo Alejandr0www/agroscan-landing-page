@@ -8,19 +8,119 @@ const content = document.querySelector('#view-content');
 const status = document.querySelector('#app-status');
 const logout = document.querySelector('#logout');
 const links = document.querySelectorAll('[data-view]');
-function readStorage(key, fallback) { try { return localStorage.getItem(key) || fallback; } catch (error) { return fallback; } }
-function writeStorage(key, value) { try { localStorage.setItem(key, value); } catch (error) { /* La demo sigue disponible sin almacenamiento. */ } }
 let user = '';
 let role = 'agricultor';
-let records = []; try { records = JSON.parse(readStorage('agroscan-records', '[]')); } catch (error) { records = []; }
-let lastCrop = readStorage('agroscan-crop', 'papa');
+let currentId = '';
+let records = [];
+let lastCrop = 'papa';
+function dataKey(key) { return currentId ? key + ':' + currentId : key; }
+function readStorage(key, fallback) { try { return localStorage.getItem(dataKey(key)) || fallback; } catch (error) { return fallback; } }
+function writeStorage(key, value) { try { localStorage.setItem(dataKey(key), value); } catch (error) { /* Sin almacenamiento, los cambios solo duran en esta sesión. */ } }
 let currentResult = null;
 const escapeText = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 function notify(message) { status.textContent = message; }
-function start() { loginView.hidden = !!user; appView.hidden = !user; logout.hidden = !user; if (user) show('home'); }
-document.querySelector('#login-form').addEventListener('submit', event => { event.preventDefault(); user = document.querySelector('#username').value.trim(); if (!user) return; role = document.querySelector('#role').value; start(); });
-logout.addEventListener('click', () => { user = ''; currentResult = null; start(); });
-links.forEach(link => link.addEventListener('click', () => { if (!user) { document.querySelector('#username').focus(); return; } show(link.dataset.view); }));
+const authStatus = document.querySelector('#auth-status');
+const loginForm = document.querySelector('#login-form');
+const registerForm = document.querySelector('#register-form');
+const loginTab = document.querySelector('#login-tab');
+const registerTab = document.querySelector('#register-tab');
+const accountStore = 'agroscan-demo-accounts-v1';
+
+function accounts() {
+  const saved = localStorage.getItem(accountStore);
+  const values = saved ? JSON.parse(saved) : [];
+  return Array.isArray(values) ? values : [];
+}
+function hex(bytes) {
+  return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+}
+async function passwordDigest(password, salt) {
+  const encoder = new TextEncoder();
+  const saltBytes = new Uint8Array(salt.match(/.{2}/g).map(part => parseInt(part, 16)));
+  const key = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits({name: 'PBKDF2', salt: saltBytes, iterations: 120000, hash: 'SHA-256'}, key, 256);
+  return hex(new Uint8Array(bits));
+}
+function authTab(mode) {
+  const registering = mode === 'register';
+  loginForm.hidden = registering;
+  registerForm.hidden = !registering;
+  loginTab.setAttribute('aria-selected', String(!registering));
+  registerTab.setAttribute('aria-selected', String(registering));
+  authStatus.textContent = '';
+}
+function beginSession(account) {
+  user = account.name;
+  role = account.role;
+  currentId = account.id;
+  try { records = JSON.parse(readStorage('agroscan-records', '[]')); if (!Array.isArray(records)) records = []; } catch (error) { records = []; }
+  lastCrop = readStorage('agroscan-crop', 'papa');
+  start();
+  document.querySelector('#experiencia').scrollIntoView({behavior:'smooth'});
+}
+function start() {
+  const loggedIn = Boolean(user);
+  loginView.hidden = loggedIn;
+  appView.hidden = !loggedIn;
+  logout.hidden = !loggedIn;
+  document.body.classList.toggle('app-mode', loggedIn);
+  document.querySelector('.app-shell').classList.toggle('is-authenticated', loggedIn);
+  if (loggedIn) show('home');
+}
+loginTab.addEventListener('click', () => authTab('login'));
+registerTab.addEventListener('click', () => authTab('register'));
+document.querySelectorAll('[data-auth-open]').forEach(link => link.addEventListener('click', () => authTab(link.dataset.authOpen)));
+registerForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = registerForm.querySelector('button[type="submit"]');
+  const name = document.querySelector('#register-name').value.trim();
+  const email = document.querySelector('#register-email').value.trim().toLowerCase();
+  const password = document.querySelector('#register-password').value;
+  const confirm = document.querySelector('#register-confirm').value;
+  if (!name) { authStatus.textContent = 'Escribe tu nombre.'; return; }
+  if (password !== confirm) { authStatus.textContent = 'Las contraseñas no coinciden.'; return; }
+  button.disabled = true;
+  try {
+    if (!window.crypto || !crypto.subtle) throw new Error('crypto');
+    const users = accounts();
+    if (users.some(account => account.email === email)) { authStatus.textContent = 'Ya existe un perfil de prueba con ese correo en este navegador.'; return; }
+    const salt = hex(crypto.getRandomValues(new Uint8Array(16)));
+    const id = hex(crypto.getRandomValues(new Uint8Array(12)));
+    const account = {id, name, email, role:document.querySelector('#role').value, salt, passwordHash:await passwordDigest(password, salt)};
+    users.push(account);
+    localStorage.setItem(accountStore, JSON.stringify(users));
+    registerForm.reset();
+    authStatus.textContent = '';
+    beginSession(account);
+  } catch (error) {
+    authStatus.textContent = 'No se pudo guardar el perfil. Verifica que el navegador permita almacenamiento y usa la página publicada.';
+  } finally { button.disabled = false; }
+});
+loginForm.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = loginForm.querySelector('button[type="submit"]');
+  const email = document.querySelector('#login-email').value.trim().toLowerCase();
+  const password = document.querySelector('#login-password').value;
+  button.disabled = true;
+  try {
+    const account = accounts().find(entry => entry.email === email);
+    if (!account || await passwordDigest(password, account.salt) !== account.passwordHash) {
+      authStatus.textContent = 'Correo o contraseña incorrectos. Si aún no tienes perfil de prueba, regístrate.';
+      return;
+    }
+    loginForm.reset();
+    authStatus.textContent = '';
+    beginSession(account);
+  } catch (error) {
+    authStatus.textContent = 'No se pudo iniciar sesión en esta demo. Revisa la configuración del navegador.';
+  } finally { button.disabled = false; }
+});
+logout.addEventListener('click', () => {
+  user = ''; role = 'agricultor'; currentId = ''; currentResult = null; records = []; lastCrop = 'papa';
+  loginForm.reset(); registerForm.reset(); authTab('login'); start();
+  document.querySelector('#inicio').scrollIntoView({behavior:'smooth'});
+});
+links.forEach(link => link.addEventListener('click', () => { if (!user) { authTab('login'); document.querySelector('#login-email').focus(); return; } show(link.dataset.view); }));
 function show(view) {
   status.textContent = '';
   links.forEach(link => link.classList.toggle('active', link.dataset.view === view));
@@ -54,3 +154,4 @@ content.addEventListener('submit', event => {
 });
 document.querySelector('#contact-form').addEventListener('submit', event => { event.preventDefault(); document.querySelector('#contact-status').textContent = 'Gracias. Esta es una prueba: tu consulta no ha sido enviada.'; event.target.reset(); });
 start();
+
